@@ -1,0 +1,66 @@
+{
+  "divine": {
+    "description": "Celestial realm — gods, cosmic events, divine interventions",
+    "primary": "#FFD700",
+    "secondary": "#FFF8DC",
+    "accent": "#FF8C00",
+    "shadow": "#1a0a00",
+    "tags": [
+      "golden hour lighting",
+      "divine radiance",
+      "celestial glow",
+      "warm amber tones",
+      "luminous highlights",
+      "sacred geometry",
+      "ethereal atmosphere"
+    ]
+  },
+  "conflict": {
+    "description": "Battle scenes, confrontations, high tension",
+    "primary": "#8B0000",
+    "secondary": "#2F0000",
+    "accent": "#FF4500",
+    "shadow": "#0a0000",
+    "tags": [
+      "dramatic lighting",
+      "deep shadows",
+      "high contrast",
+      "crimson accents",
+      "smoke and dust",
+      "intense atmosphere",
+      "battle-worn environment"
+    ]
+  },
+  "domestic": {
+    "description": "Home, family, everyday life, village scenes",
+    "primary": "#8B6914",
+    "secondary": "#F5DEB3",
+    "accent": "#CD853F",
+    "shadow": "#1a0f00",
+    "tags": [
+      "warm candlelight",
+      "ochre tones",
+      "soft natural light",
+      "earthy palette",
+      "terracotta accents",
+      "golden hour",
+      "intimate atmosphere"
+    ]
+  },
+  "lesson": {
+    "description": "Teaching moments, wisdom, philosophical exchanges",
+    "primary": "#2E8B57",
+    "secondary": "#F0FFF0",
+    "accent": "#20B2AA",
+    "shadow": "#001a0a",
+    "tags": [
+      "cool serene light",
+      "forest green tones",
+      "peaceful atmosphere",
+      "dappled sunlight",
+      "meditative mood",
+      "soft cool shadows",
+      "sage and jade palette"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "dharmapath-pipeline"
+version = "0.1.0"
+description = "Manhwa generation pipeline for DharmaPath — screenplay JSON to Webtoon-ready panel strips"
+authors = [
+    { name = "Vishwajeet Patil" },
+    { name = "Kedar Mujumdar" },
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "Proprietary" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dharmapath*", "web*", "cli*", "config*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

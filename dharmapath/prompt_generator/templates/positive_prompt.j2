@@ -1,0 +1,18 @@
+{%- set char_descriptions = [] -%}
+{%- for name in panel.characters -%}
+  {%- set entry = registry.get(name) -%}
+  {%- if entry and entry.description -%}
+    {%- set _ = char_descriptions.append(entry.description) -%}
+  {%- endif -%}
+{%- endfor -%}
+{{ style_tags | join(", ") }},
+{%- if char_descriptions %}
+{{ char_descriptions | join(", ") }},
+{%- endif %}
+{{ panel.action }},
+{{ panel.environment }},
+{{ panel.lighting }},
+{{ panel.camera }},
+{{ panel.mood }},
+{{ palette_tags | join(", ") }},
+{{ quality_tags | join(", ") }}

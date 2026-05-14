@@ -1,0 +1,296 @@
+{
+  "version": "1.0",
+  "chapter": {
+    "chapter_id": "itihaasa_ch01",
+    "path": "itihaasa",
+    "arc": "conflict",
+    "title": "The Dice Game",
+    "description": "Yudhishthira is drawn into a rigged game of dice by Shakuni. The Pandavas lose everything — their kingdom, their freedom, and finally Draupadi.",
+    "arc_number": 1,
+    "lesson_id": "lesson_itihaasa_01"
+  },
+  "panels": [
+    {
+      "panel_id": "p01",
+      "size": "full",
+      "beat": "hook",
+      "shot_type": "establishing",
+      "characters": ["Duryodhana", "Shakuni"],
+      "action": "Duryodhana and Shakuni stand at the entrance of the grand dice hall, torchlight casting long shadows behind them. Duryodhana's smile is cold and calculated.",
+      "environment": "Hastinapur palace dice hall — vast stone columns, oil lamps, a central gaming table of dark wood inlaid with ivory.",
+      "lighting": "Dramatic torchlight from wall sconces, deep shadows in corners, warm amber glow on their faces.",
+      "camera": "Low angle wide shot, characters silhouetted against the hall entrance.",
+      "mood": "Ominous, predatory anticipation.",
+      "dialogue": [
+        {
+          "speaker": "Shakuni",
+          "type": "speech",
+          "text": "The game is already won, nephew. All that remains is for them to play it."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p02",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira walks through the palace corridor, dressed in white. His expression is calm but his eyes carry the weight of duty.",
+      "environment": "Hastinapur palace corridor — marble floors, carved pillars, morning light through latticed windows.",
+      "lighting": "Soft cool morning light from the left, gentle shadows.",
+      "camera": "Medium shot, slightly low angle, character walking toward camera.",
+      "mood": "Dignified calm, unaware of the trap ahead.",
+      "dialogue": [
+        {
+          "speaker": "Yudhishthira",
+          "type": "thought",
+          "text": "A king does not refuse a royal invitation. It is dharma."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p03",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "close_face",
+      "characters": ["Shakuni"],
+      "action": "Extreme close-up on Shakuni's eyes — sharp, calculating, gleaming with barely-concealed malice.",
+      "environment": "Dice hall — blurred background of torchlight.",
+      "lighting": "Single torch reflection in both eyes, dramatic rim light.",
+      "camera": "Extreme close-up, centred on eyes.",
+      "mood": "Sinister intelligence.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p04",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "detail_insert",
+      "characters": [],
+      "action": "Shakuni's dice in close-up — ornate ivory dice, slightly marked.",
+      "environment": "Close on the gaming table.",
+      "lighting": "Warm amber, high contrast.",
+      "camera": "Macro detail shot.",
+      "mood": "Foreboding.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p05",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "detail_insert",
+      "characters": [],
+      "action": "Yudhishthira's hand reaching for the dice — steady, unaware.",
+      "environment": "Close on the gaming table.",
+      "lighting": "Warm amber, slightly softer than panel 04.",
+      "camera": "Macro detail shot, different angle.",
+      "mood": "Calm before catastrophe.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p06",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Duryodhana"],
+      "action": "Duryodhana seated at the table, leaning forward with his chin resting on folded hands, watching.",
+      "environment": "Dice hall, from across the table.",
+      "lighting": "Torchlight, left side lit.",
+      "camera": "Medium shot across the table.",
+      "mood": "Patient malice.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p07",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "establishing",
+      "characters": ["Yudhishthira", "Shakuni", "Duryodhana"],
+      "action": "Wide shot of the dice hall — three figures at the gaming table, court observers watching from the sides in silence.",
+      "environment": "Full dice hall, high ceiling, torches, observers on both sides.",
+      "lighting": "Central light over table, dark periphery.",
+      "camera": "Wide establishing shot from above.",
+      "mood": "Solemn, trapped.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "type": "caption",
+          "text": "The game had already begun."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p08",
+      "size": "full",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Yudhishthira", "Shakuni"],
+      "action": "Yudhishthira sits across from Shakuni at the table. The first throw has been made. Yudhishthira stares at the dice showing a loss.",
+      "environment": "Dice hall — close on the table between the two men.",
+      "lighting": "Torchlight, harsh shadows emphasising the stakes.",
+      "camera": "Two-shot, medium, across the table.",
+      "mood": "First crack in Yudhishthira's composure.",
+      "dialogue": [
+        {
+          "speaker": "Shakuni",
+          "type": "speech",
+          "text": "Indraprastha is a worthy opening stake, cousin. Shall we continue?"
+        },
+        {
+          "speaker": "Yudhishthira",
+          "type": "thought",
+          "text": "I cannot stop now. To walk away would dishonour us both."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p09",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "close_face",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira's face — sweat on his brow, eyes fixed on the dice. The cracks are showing.",
+      "environment": "Blurred dice hall background.",
+      "lighting": "Torchlight, harsh from above, deep shadows under his eyes.",
+      "camera": "Close-up face shot.",
+      "mood": "Trapped, desperate rationalism.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p10",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Shakuni"],
+      "action": "Shakuni throws the dice — his wrist loose, his smile easy, utterly in control.",
+      "environment": "Table surface, dice in mid-air.",
+      "lighting": "Flash of lamplight catching the ivory dice.",
+      "camera": "Medium shot — dice and hand in foreground, Shakuni's pleased face behind.",
+      "mood": "Effortless malice.",
+      "dialogue": [
+        {
+          "speaker": "Shakuni",
+          "type": "speech",
+          "text": "I have won."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p11",
+      "size": "full",
+      "beat": "impact",
+      "shot_type": "establishing",
+      "characters": ["Yudhishthira", "Draupadi", "Dushasana", "Duryodhana"],
+      "action": "Dushasana drags Draupadi into the dice hall by her hair. The court watches in stunned silence. Yudhishthira is frozen, his hands gripping the table. Duryodhana laughs.",
+      "environment": "The full dice hall — every observer visible, the moment of total collapse.",
+      "lighting": "Brutal torchlight, no mercy in the shadows, the central moment fully lit.",
+      "camera": "Wide dramatic shot — Draupadi centre, Dushasana behind, Yudhishthira left, Duryodhana right.",
+      "mood": "Catastrophic, shameful, irreversible.",
+      "dialogue": [
+        {
+          "speaker": "Draupadi",
+          "type": "speech",
+          "text": "Is there no dharma left in this hall? No king here who will speak?"
+        }
+      ],
+      "pose_ref": "itihaasa_ch01_p11_pose.png",
+      "palette_override": null,
+      "human_required": true
+    },
+    {
+      "panel_id": "p12",
+      "size": "half",
+      "beat": "quiet",
+      "shot_type": "close_face",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira's face in the aftermath — eyes downcast, hollowed, the dice still in his open palm.",
+      "environment": "Blurred dice hall.",
+      "lighting": "Single torch, side-lit, deep shadow on half his face.",
+      "camera": "Extreme close-up.",
+      "mood": "Total collapse of self, silent grief.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p13",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Bhima"],
+      "action": "Bhima's fists clenched at his sides, trembling with barely-controlled rage. His jaw is set.",
+      "environment": "Side of the dice hall — observers' area.",
+      "lighting": "Torchlight, side-lit, hard shadows.",
+      "camera": "Medium shot, low angle.",
+      "mood": "Suppressed volcanic fury.",
+      "dialogue": [
+        {
+          "speaker": "Bhima",
+          "type": "thought",
+          "text": "I will burn these hands that lost her. I swear it."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p14",
+      "size": "full",
+      "beat": "close",
+      "shot_type": "establishing",
+      "characters": ["Draupadi"],
+      "action": "Draupadi stands alone in the centre of the hall — dishevelled but unbowed. Her eyes carry fire, not defeat. The court is silent around her.",
+      "environment": "Full dice hall, all figures in background, Draupadi centre foreground.",
+      "lighting": "A single shaft of light from above falls on her — the only warmth in the scene.",
+      "camera": "Low angle wide shot, Draupadi dominant in frame.",
+      "mood": "Righteous, defiant, prophetic.",
+      "dialogue": [
+        {
+          "speaker": "Draupadi",
+          "type": "speech",
+          "text": "Remember this day, Kuru elders. What is begun here will end in fire."
+        },
+        {
+          "speaker": "NARRATOR",
+          "type": "caption",
+          "text": "The war had its first cause."
+        }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    }
+  ]
+}

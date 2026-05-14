@@ -1,0 +1,256 @@
+{
+  "version": "1.0",
+  "chapter": {
+    "chapter_id": "itihaasa_ch01",
+    "path": "itihaasa",
+    "arc": "conflict",
+    "title": "The Dice Game",
+    "description": "Test fixture for the Itihaasa Chapter 1 screenplay.",
+    "arc_number": 1,
+    "lesson_id": "lesson_itihaasa_01"
+  },
+  "panels": [
+    {
+      "panel_id": "p01",
+      "size": "full",
+      "beat": "hook",
+      "shot_type": "establishing",
+      "characters": ["Duryodhana", "Shakuni"],
+      "action": "Duryodhana and Shakuni stand at the entrance of the dice hall.",
+      "environment": "Hastinapur palace dice hall.",
+      "lighting": "Dramatic torchlight.",
+      "camera": "Low angle wide shot.",
+      "mood": "Ominous.",
+      "dialogue": [
+        { "speaker": "Shakuni", "type": "speech", "text": "The game is already won, nephew." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p02",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira walks toward the dice hall.",
+      "environment": "Palace corridor.",
+      "lighting": "Cool morning light.",
+      "camera": "Medium shot.",
+      "mood": "Calm.",
+      "dialogue": [
+        { "speaker": "Yudhishthira", "type": "thought", "text": "A king does not refuse a royal invitation." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p03",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "close_face",
+      "characters": ["Shakuni"],
+      "action": "Close on Shakuni's gleaming eyes.",
+      "environment": "Dice hall.",
+      "lighting": "Torch reflection in eyes.",
+      "camera": "Extreme close-up.",
+      "mood": "Sinister.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p04",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "detail_insert",
+      "characters": [],
+      "action": "Shakuni's dice in close-up.",
+      "environment": "Gaming table.",
+      "lighting": "Warm amber.",
+      "camera": "Macro shot.",
+      "mood": "Foreboding.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p05",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "detail_insert",
+      "characters": [],
+      "action": "Yudhishthira's hand reaching for the dice.",
+      "environment": "Gaming table.",
+      "lighting": "Warm amber.",
+      "camera": "Macro shot.",
+      "mood": "Unaware.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p06",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Duryodhana"],
+      "action": "Duryodhana watching from across the table.",
+      "environment": "Dice hall.",
+      "lighting": "Torchlight.",
+      "camera": "Medium shot.",
+      "mood": "Patient malice.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p07",
+      "size": "quarter",
+      "beat": "escalation",
+      "shot_type": "establishing",
+      "characters": ["Yudhishthira", "Shakuni", "Duryodhana"],
+      "action": "Wide shot of the dice hall.",
+      "environment": "Full dice hall with observers.",
+      "lighting": "Central light over table.",
+      "camera": "Wide shot from above.",
+      "mood": "Solemn.",
+      "dialogue": [
+        { "speaker": "NARRATOR", "type": "caption", "text": "The game had already begun." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p08",
+      "size": "full",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Yudhishthira", "Shakuni"],
+      "action": "First dice throw — Yudhishthira stares at a loss.",
+      "environment": "Dice hall, close on the table.",
+      "lighting": "Harsh torchlight.",
+      "camera": "Two-shot across the table.",
+      "mood": "First crack in composure.",
+      "dialogue": [
+        { "speaker": "Shakuni", "type": "speech", "text": "Indraprastha is a worthy opening stake. Shall we continue?" },
+        { "speaker": "Yudhishthira", "type": "thought", "text": "I cannot stop now. To walk away is dishonour." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p09",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "close_face",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira's face — sweat on brow.",
+      "environment": "Blurred dice hall.",
+      "lighting": "Harsh from above.",
+      "camera": "Close-up face shot.",
+      "mood": "Trapped.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p10",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Shakuni"],
+      "action": "Shakuni throws the dice.",
+      "environment": "Table surface.",
+      "lighting": "Lamplight catching the dice.",
+      "camera": "Medium shot.",
+      "mood": "Effortless malice.",
+      "dialogue": [
+        { "speaker": "Shakuni", "type": "speech", "text": "I have won." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p11",
+      "size": "full",
+      "beat": "impact",
+      "shot_type": "establishing",
+      "characters": ["Yudhishthira", "Draupadi", "Dushasana", "Duryodhana"],
+      "action": "Dushasana drags Draupadi into the dice hall.",
+      "environment": "Full dice hall.",
+      "lighting": "Brutal torchlight.",
+      "camera": "Wide dramatic shot.",
+      "mood": "Catastrophic.",
+      "dialogue": [
+        { "speaker": "Draupadi", "type": "speech", "text": "Is there no dharma left in this hall?" }
+      ],
+      "pose_ref": "itihaasa_ch01_p11_pose.png",
+      "palette_override": null,
+      "human_required": true
+    },
+    {
+      "panel_id": "p12",
+      "size": "half",
+      "beat": "quiet",
+      "shot_type": "close_face",
+      "characters": ["Yudhishthira"],
+      "action": "Yudhishthira's face — eyes downcast.",
+      "environment": "Blurred dice hall.",
+      "lighting": "Single torch, side-lit.",
+      "camera": "Extreme close-up.",
+      "mood": "Silent grief.",
+      "dialogue": [],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p13",
+      "size": "half",
+      "beat": "escalation",
+      "shot_type": "medium",
+      "characters": ["Bhima"],
+      "action": "Bhima's fists clenched, trembling.",
+      "environment": "Side of the dice hall.",
+      "lighting": "Torchlight, side-lit.",
+      "camera": "Medium shot, low angle.",
+      "mood": "Suppressed fury.",
+      "dialogue": [
+        { "speaker": "Bhima", "type": "thought", "text": "I will burn these hands that lost her. I swear it." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    },
+    {
+      "panel_id": "p14",
+      "size": "full",
+      "beat": "close",
+      "shot_type": "establishing",
+      "characters": ["Draupadi"],
+      "action": "Draupadi stands alone — dishevelled but unbowed.",
+      "environment": "Full dice hall.",
+      "lighting": "Single shaft of light from above.",
+      "camera": "Low angle wide shot.",
+      "mood": "Righteous, defiant.",
+      "dialogue": [
+        { "speaker": "Draupadi", "type": "speech", "text": "What is begun here will end in fire." },
+        { "speaker": "NARRATOR", "type": "caption", "text": "The war had its first cause." }
+      ],
+      "pose_ref": null,
+      "palette_override": null,
+      "human_required": false
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "_comment": "DharmaPath panel generation workflow. Export your real ComfyUI workflow as API JSON and replace this stub. Node IDs must match the constants in workflow_builder.py NodeID class.",
+  "3": {
+    "class_type": "KSampler",
+    "_meta": { "title": "KSampler" },
+    "inputs": {
+      "model": ["10", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "latent_image": ["5", 0],
+      "seed": 42,
+      "steps": 30,
+      "cfg": 7.0,
+      "sampler_name": "dpmpp_2m_karras",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "4": {
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": { "title": "Load Checkpoint" },
+    "inputs": {
+      "ckpt_name": "animagineXLV31_v31.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "EmptyLatentImage",
+    "_meta": { "title": "Empty Latent Image" },
+    "inputs": {
+      "width": 800,
+      "height": 1200,
+      "batch_size": 1
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "CLIP Text Encode (Positive)" },
+    "inputs": {
+      "text": "PLACEHOLDER_POSITIVE",
+      "clip": ["4", 1]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "CLIP Text Encode (Negative)" },
+    "inputs": {
+      "text": "PLACEHOLDER_NEGATIVE",
+      "clip": ["4", 1]
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "_meta": { "title": "VAE Decode" },
+    "inputs": {
+      "samples": ["3", 0],
+      "vae": ["4", 2]
+    }
+  },
+  "10": {
+    "class_type": "LoraLoader",
+    "_meta": { "title": "Style LoRA" },
+    "inputs": {
+      "model": ["4", 0],
+      "clip": ["4", 1],
+      "lora_name": "itihaasa_style_v1.safetensors",
+      "strength_model": 0.85,
+      "strength_clip": 0.85
+    }
+  },
+  "11": {
+    "class_type": "LoraLoader",
+    "_meta": { "title": "Character LoRA (chained)" },
+    "inputs": {
+      "model": ["10", 0],
+      "clip": ["10", 1],
+      "lora_name": "",
+      "strength_model": 0.65,
+      "strength_clip": 0.65
+    }
+  },
+  "15": {
+    "class_type": "IPAdapter",
+    "_meta": { "title": "IP-Adapter Face Reference" },
+    "inputs": {
+      "model": ["11", 0],
+      "image": ["23", 0],
+      "weight": 0.65,
+      "weight_type": "original",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 1.0,
+      "embeds_scaling": "V only"
+    }
+  },
+  "20": {
+    "class_type": "ControlNetApply",
+    "_meta": { "title": "ControlNet Apply (DWPose)" },
+    "inputs": {
+      "conditioning": ["6", 0],
+      "control_net": ["21", 0],
+      "image": ["22", 0],
+      "strength": 0.85
+    }
+  },
+  "21": {
+    "class_type": "ControlNetLoader",
+    "_meta": { "title": "ControlNet Loader" },
+    "inputs": {
+      "control_net_name": "control_v11p_sd21_openpose.pth"
+    }
+  },
+  "22": {
+    "class_type": "LoadImage",
+    "_meta": { "title": "Load Pose Skeleton" },
+    "inputs": {
+      "image": "PLACEHOLDER_POSE_PATH",
+      "upload": "image"
+    }
+  },
+  "23": {
+    "class_type": "LoadImage",
+    "_meta": { "title": "Load Face Reference (IP-Adapter)" },
+    "inputs": {
+      "image": "PLACEHOLDER_FACE_PATH",
+      "upload": "image"
+    }
+  },
+  "30": {
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": { "title": "ESRGAN Upscale x2" },
+    "inputs": {
+      "upscale_model": ["31", 0],
+      "image": ["8", 0]
+    }
+  },
+  "31": {
+    "class_type": "UpscaleModelLoader",
+    "_meta": { "title": "Load ESRGAN Model" },
+    "inputs": {
+      "model_name": "RealESRGAN_x4plus.pth"
+    }
+  },
+  "35": {
+    "class_type": "SaveImage",
+    "_meta": { "title": "Save Panel Image" },
+    "inputs": {
+      "images": ["30", 0],
+      "filename_prefix": "dp_ch01_p01_v1"
+    }
+  },
+  "40": {
+    "class_type": "CLIPVisionEncode",
+    "_meta": { "title": "Colour Grading Arc Select" },
+    "inputs": {
+      "clip_vision": ["41", 0],
+      "image": ["8", 0],
+      "mode": 1
+    }
+  },
+  "41": {
+    "class_type": "CLIPVisionLoader",
+    "_meta": { "title": "Colour Grade LUT Loader" },
+    "inputs": {
+      "clip_name": "lut_conflict.safetensors"
+    }
+  }
+}

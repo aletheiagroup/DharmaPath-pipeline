@@ -1,0 +1,91 @@
+{
+  "itihaasa": {
+    "description": "Mahabharata arc — classical Indian manhwa style",
+    "lora_model": "itihaasa_style_v1.safetensors",
+    "lora_weight": 0.85,
+    "style_tags": [
+      "manhwa style",
+      "webtoon art",
+      "clean lineart",
+      "flat color shading",
+      "classical Indian architecture",
+      "ancient India setting",
+      "detailed fabric patterns",
+      "ornate jewellery",
+      "dramatic panel composition",
+      "high contrast inking"
+    ],
+    "quality_tags": [
+      "masterpiece",
+      "best quality",
+      "highly detailed",
+      "professional illustration",
+      "sharp focus",
+      "8k resolution"
+    ],
+    "character_lora_weight": 0.65,
+    "ip_adapter_weight": 0.65,
+    "steps": 30,
+    "cfg": 7.0,
+    "sampler": "dpmpp_2m_karras",
+    "upscale_model": "RealESRGAN_x4plus.pth",
+    "upscale_factor": 2.0
+  },
+  "leela": {
+    "description": "Krishna Leela arc — vibrant, playful style (coming soon)",
+    "lora_model": "leela_style_v1.safetensors",
+    "lora_weight": 0.80,
+    "style_tags": [
+      "manhwa style",
+      "webtoon art",
+      "vibrant colors",
+      "playful composition",
+      "Vrindavan forest setting",
+      "pastoral scenes",
+      "fluid motion lines",
+      "joyful atmosphere"
+    ],
+    "quality_tags": [
+      "masterpiece",
+      "best quality",
+      "highly detailed",
+      "professional illustration"
+    ],
+    "character_lora_weight": 0.65,
+    "ip_adapter_weight": 0.65,
+    "steps": 30,
+    "cfg": 7.0,
+    "sampler": "dpmpp_2m_karras",
+    "upscale_model": "RealESRGAN_x4plus.pth",
+    "upscale_factor": 2.0
+  },
+  "cosmological": {
+    "description": "Creation and cosmic scale — epic, abstract style (coming soon)",
+    "lora_model": "cosmological_style_v1.safetensors",
+    "lora_weight": 0.90,
+    "style_tags": [
+      "manhwa style",
+      "webtoon art",
+      "cosmic scale",
+      "nebula backgrounds",
+      "divine light rays",
+      "abstract energy forms",
+      "epic composition",
+      "surreal atmosphere"
+    ],
+    "quality_tags": [
+      "masterpiece",
+      "best quality",
+      "highly detailed",
+      "professional illustration",
+      "cinematic lighting"
+    ],
+    "character_lora_weight": 0.65,
+    "ip_adapter_weight": 0.65,
+    "steps": 35,
+    "cfg": 7.5,
+    "sampler": "dpmpp_2m_karras",
+    "upscale_model": "RealESRGAN_x4plus.pth",
+    "upscale_factor": 2.0
+  }
+}
