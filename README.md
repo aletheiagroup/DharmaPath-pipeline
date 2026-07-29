@@ -8,50 +8,92 @@
 
 This pipeline is **semi-automated**:
 - **Human decisions:** screenplay writing, character selection, impact panel review
-- **Automated:** prompt generation, ComfyUI image generation (via RunPod API), panel assembly, R2 upload
+- **Automated:** prompt generation, ComfyUI image generation (via GCE GPU), panel assembly, cloud upload
 
-All heavy compute (image generation, ESRGAN upscale, colour grading) happens on **RunPod** via the ComfyUI REST API. No local GPU required.
+All heavy compute (image generation, ESRGAN upscale, colour grading) runs on a **GCE VM with T4 GPU** via the ComfyUI REST API. No local GPU required.
 
 ---
 
 ## Tech Stack
 
 | Component | Technology |
-|-----------|-----------|
+|-----------|------------|
 | Language | Python 3.11+ |
-| Web UI | FastAPI + Jinja2 (no React, no build step) |
+| Backend API | FastAPI (async REST API) |
+| Frontend | **dharmapath-studio** — React 19 + TypeScript + Vite (separate repo) |
 | Image processing | Pillow |
-| ComfyUI client | httpx (async) |
-| Storage | Cloudflare R2 via boto3 (S3-compatible) |
+| ComfyUI client | httpx (async) with retry + circuit breaker |
+| AI / LLM | Google Gemini 2.0 Flash via `google-genai` |
+| Storage | Cloudflare R2 (boto3) or Google Cloud Storage |
 | Config | pydantic-settings + python-dotenv |
 | Data models | Pydantic v2 |
-| CLI | Typer |
-| Tests | pytest |
+| CLI | Typer + Rich |
+| Tests | pytest + pytest-asyncio |
 
 ---
 
 ## Prerequisites
 
-- **WSL2** (Ubuntu 22.04+) on Windows
-- **Python 3.11+** inside WSL
-- A **RunPod** instance running ComfyUI (with DWPose, ESRGAN, IP-Adapter nodes installed)
-- A **Cloudflare R2** bucket named `dharmapath`
+- **Python 3.11+** (Windows, WSL, or Linux)
+- A **GCE VM** (e.g. `g2-standard-4` with L4, or any instance with T4 GPU) running ComfyUI via Docker
+- A **Cloudflare R2** bucket and/or **Google Cloud Storage** bucket named `dharmapath`
+- A **Google API key** for Gemini (get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey))
 
 ---
 
-## WSL Setup
+## Quick Start
 
-Run the automated setup script inside WSL:
+### 1. Clone and install
 
 ```bash
-bash scripts/setup_wsl.sh
+git clone https://github.com/aletheiagroup/DharmaPath-pipeline.git
+cd DharmaPath-pipeline
+python -m venv .venv
+source .venv/bin/activate   # or .venv\Scripts\activate on Windows
+pip install -r requirements.txt
+pip install -e .
 ```
 
-This will:
-1. Check Python 3.11+ is available
-2. Create a `.venv` virtual environment
-3. Install all pinned dependencies from `requirements.txt`
-4. Copy `.env.example` → `.env` (you fill in real values)
+### 2. Configure environment
+
+```bash
+cp .env.example .env
+# Edit .env with your actual values (see Environment Variables below)
+```
+
+### 3. Set up ComfyUI on GCE VM
+
+SSH into your GPU VM and run the automated setup script:
+
+```bash
+sudo ./scripts/gcp_setup.sh
+```
+
+This installs Docker, NVIDIA Container Toolkit, downloads all required models (Illustrious XL, ESRGAN, ControlNet, IP-Adapter), and starts ComfyUI on port 8188.
+
+> **Firewall:** Create a GCP firewall rule to allow TCP:8188 from your IP:
+> ```bash
+> gcloud compute firewall-rules create allow-comfyui \
+>   --allow=tcp:8188 \
+>   --source-ranges=<YOUR_IP>/32 \
+>   --target-tags=comfyui-server
+> ```
+
+### 4. Verify connection
+
+```bash
+python scripts/check_runpod.py
+```
+
+### 5. Start the API server
+
+```bash
+bash scripts/start_web.sh
+# or directly:
+uvicorn web.app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Then open `http://localhost:8000` in your browser (or use **dharmapath-studio** as the frontend).
 
 ---
 
@@ -59,28 +101,19 @@ This will:
 
 Copy `.env.example` to `.env` and fill in the required values:
 
-```bash
-cp .env.example .env
-```
-
-| Variable | Where to find it |
-|----------|-----------------|
-| `COMFYUI_BASE_URL` | RunPod Dashboard → your pod → Connect → HTTP Service port 8188 |
-| `RUNPOD_API_KEY` | RunPod Dashboard → Settings → API Keys |
-| `R2_ACCOUNT_ID` | Cloudflare Dashboard → R2 → Overview |
-| `R2_ACCESS_KEY_ID` | Cloudflare Dashboard → R2 → Manage R2 API Tokens → Create Token |
-| `R2_SECRET_ACCESS_KEY` | Same token creation page (shown once) |
-| `R2_BUCKET_NAME` | The bucket you created — default: `dharmapath` |
-
----
-
-## Running the Web UI
-
-```bash
-bash scripts/start_web.sh
-```
-
-Then open `http://localhost:8000` in your Windows browser.
+| Variable | Required | Where to find it |
+|----------|----------|-----------------|
+| `COMFYUI_BASE_URL` | ✅ | GCE VM external IP — printed after running `gcp_setup.sh` |
+| `GOOGLE_API_KEY` | ✅ | [AI Studio](https://aistudio.google.com/apikey) — or leave empty if using ADC on GCE |
+| `GEMINI_MODEL` | — | Default: `gemini-2.0-flash` |
+| `GCP_PROJECT_ID` | — | GCP Console → Dashboard |
+| `GCP_REGION` | — | Default: `asia-south1` |
+| `GCS_BUCKET_NAME` | — | Your GCS bucket (default: `dharmapath`) |
+| `R2_ACCOUNT_ID` | — | Cloudflare Dashboard → R2 → Overview |
+| `R2_ACCESS_KEY_ID` | — | Cloudflare Dashboard → R2 → Manage R2 API Tokens |
+| `R2_SECRET_ACCESS_KEY` | — | Same token creation page (shown once) |
+| `R2_BUCKET_NAME` | — | Default: `dharmapath` |
+| `RUNPOD_API_KEY` | — | Legacy — only if still using RunPod |
 
 ---
 
@@ -102,7 +135,7 @@ dharmapath assemble itihaasa_ch01
 # Split assembled strip into Webtoon episode files
 dharmapath export itihaasa_ch01
 
-# Check RunPod ComfyUI is reachable
+# Check ComfyUI is reachable
 dharmapath check-runpod
 ```
 
@@ -121,17 +154,17 @@ Prompt Generator builds ComfyUI prompts (Jinja2 + palette configs)
     ↓
 Workflow Builder injects prompts + LoRA weights + ControlNet + IP-Adapter
     ↓
-ComfyUI on RunPod generates panels → ESRGAN upscale → colour grading
-    ↓ every 5 panels: boto3 auto-uploads to Cloudflare R2
+ComfyUI on GCE VM generates panels → ESRGAN upscale → colour grading
+    ↓ every 5 panels: auto-uploads to cloud storage
 DWPose node flags anatomically anomalous panels
     ↓
-FastAPI review page — human marks additional panels for correction
+Review page — human marks additional panels for correction
     ↓ flagged panels → ComfyUI inpainting workflow
 Pillow assembler stacks panels into vertical strip (800px wide)
     ↓
 Pillow exporter splits at 5120px → episode JPGs at 90% quality
     ↓
-Final episodes upload to R2 → ready for Webtoon upload
+Final episodes upload to cloud → ready for Webtoon upload
 ```
 
 ---
@@ -140,32 +173,62 @@ Final episodes upload to R2 → ready for Webtoon upload
 
 ```
 dharmapath-pipeline/
-├── config/           ← Settings, palettes, style profiles
-├── data/             ← Screenplays, generated assets, character refs
-├── dharmapath/       ← Core Python package
-│   ├── models/       ← Pydantic data models
-│   ├── registry/     ← Character registry
-│   ├── validator/    ← Screenplay validation rules
-│   ├── prompt_generator/  ← Panel prompt construction
-│   ├── comfyui/      ← ComfyUI API client + workflow builder
-│   ├── character_designer/ ← Candidate generation + face crop
-│   ├── assembler/    ← Panel strip assembly + export
-│   ← storage/       ← Cloudflare R2 client
-│   └── pipeline/     ← End-to-end chapter runner
-├── web/              ← FastAPI app + Jinja2 templates
-├── cli/              ← Typer CLI entry point
-├── scripts/          ← WSL setup + utility scripts
-└── tests/            ← pytest tests + fixtures
+├── config/                  ← Settings, palettes, style profiles, model manifest
+├── data/                    ← Screenplays, generated assets, character refs
+├── dharmapath/              ← Core Python package
+│   ├── models/              ← Pydantic data models (Screenplay, Character, Job)
+│   ├── registry/            ← Character registry (characters.json, approval flow)
+│   ├── validator/           ← Screenplay validation rules
+│   ├── prompt_generator/    ← Panel prompt construction (Jinja2 templates)
+│   ├── comfyui/             ← ComfyUI API client + workflow builder
+│   ├── character_designer/  ← Candidate generation + face crop
+│   ├── assembler/           ← Panel strip assembly + Webtoon export
+│   ├── storage/             ← Cloudflare R2 + Google Cloud Storage clients
+│   ├── genai/               ← Gemini 2.0 Flash client
+│   ├── utils/               ← Retry with backoff, circuit breaker
+│   └── pipeline/            ← End-to-end chapter runner
+├── web/                     ← FastAPI REST API
+│   ├── routes/              ← API endpoints (chapters, panels, generation, etc.)
+│   ├── schemas/             ← Request/response Pydantic schemas
+│   ├── services/            ← Business logic layer
+│   └── store/               ← Job store, review store, task manager
+├── cli/                     ← Typer CLI entry point
+├── scripts/                 ← GCE setup, WSL setup, health check
+└── tests/                   ← pytest tests + fixtures
 ```
+
+---
+
+## GCE VM Setup
+
+The setup script (`scripts/gcp_setup.sh`) automates the full GPU server configuration:
+
+1. Installs **Docker** + **Docker Compose**
+2. Installs **NVIDIA Container Toolkit** for GPU passthrough
+3. Creates persistent directories at `/opt/comfyui/`
+4. Downloads models defined in `config/model_manifest.yaml`:
+   - **Illustrious XL v0.1** (~6.5 GB) — base checkpoint
+   - **RealESRGAN x4plus** (~67 MB) — upscaler
+   - **ControlNet OpenPose SDXL** (~1.4 GB) — pose control
+   - **IP-Adapter SDXL** (~700 MB) — character consistency
+   - **CLIP Vision ViT-G** (~2.5 GB) — IP-Adapter dependency
+5. Starts ComfyUI via `docker compose` on port 8188
+
+A version-controlled Docker Compose file is also available at `docker-compose.gpu.yml`.
 
 ---
 
 ## Testing
 
 ```bash
-pytest                  # run all tests
-pytest tests/test_validator.py -v    # validator rules only
-pytest tests/test_assembler.py -v    # assembler logic only
+pytest                               # run all tests
+pytest tests/test_validator.py -v    # screenplay validation rules
+pytest tests/test_assembler.py -v    # assembler logic
+pytest tests/test_comfyui.py -v      # ComfyUI client (mocked)
+pytest tests/test_retry.py -v        # retry + circuit breaker
+pytest tests/test_runner.py -v       # pipeline runner
+pytest tests/api/ -v                 # API endpoint tests
+pytest -m live                       # live tests (requires running ComfyUI)
 ```
 
 ---
