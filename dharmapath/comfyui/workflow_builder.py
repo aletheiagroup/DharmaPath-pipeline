@@ -126,6 +126,9 @@ class WorkflowBuilder:
                 "strength_model":  lora_weight,
                 "strength_clip":   lora_weight,
             })
+        else:
+            self._set_node_input(wf, NodeID.LORA_LOADER, "lora_name", "")
+            self._disable_node(wf, NodeID.LORA_LOADER)
 
         # ── IP-Adapter face reference ─────────────────────────
         # Use first approved character's face crop (primary character)
@@ -211,6 +214,9 @@ class WorkflowBuilder:
                 "strength_model": style_profile.get("lora_weight", 0.85),
                 "strength_clip":  style_profile.get("lora_weight", 0.85),
             })
+        else:
+            self._set_node_input(wf, NodeID.CAND_LORA_LOADER, "lora_name", "")
+            self._disable_node(wf, NodeID.CAND_LORA_LOADER)
 
         safe_name = character_name.lower().replace(" ", "_")
         filename_prefix = f"candidate_{safe_name}_{variation_idx + 1:02d}"

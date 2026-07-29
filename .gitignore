@@ -60,3 +60,14 @@ logs/
 # Temporary files
 tmp/
 temp/
+
+# Docker — ComfyUI local data (only on GCE VM, but just in case)
+comfyui-data/
+
+# GCP service account keys — NEVER commit
+*.json.key
+service-account*.json
+
+# Non-essential / generated
+docs/
+pinterest-images/

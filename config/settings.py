@@ -18,11 +18,22 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # ── ComfyUI (RunPod) ──────────────────────────────────────
+    # ── ComfyUI (GCE VM or RunPod) ───────────────────────────
     comfyui_base_url: str = "http://localhost:8188"
     runpod_api_key: str = ""
 
-    # ── Cloudflare R2 ─────────────────────────────────────────
+    # ── Google Cloud Platform ─────────────────────────────────
+    gcp_project_id: str = ""
+    gcp_region: str = "asia-south1"
+
+    # ── Gemini API ────────────────────────────────────────────
+    gemini_model: str = "gemini-2.0-flash"
+    google_api_key: str = ""  # Optional: uses ADC on GCE if empty
+
+    # ── Google Cloud Storage (optional, alternative to R2) ────
+    gcs_bucket_name: str = "dharmapath"
+
+    # ── Cloudflare R2 (legacy — still supported) ──────────────
     r2_account_id: str = ""
     r2_access_key_id: str = ""
     r2_secret_access_key: str = ""

@@ -1,0 +1,12 @@
+{
+  "max_failure_pct_auto": 6.5,
+  "max_failure_pct_degraded": 15.0,
+  "r2_batch_upload_interval": 5,
+  "default_generation_steps": 40,
+  "default_cfg": 7.0,
+  "default_sampler": "dpmpp_2m",
+  "default_compile_quality": "standard",
+  "max_panel_regen_retries": 3,
+  "sse_keepalive_interval_s": 15,
+  "rate_limit_per_minute": 60
+}

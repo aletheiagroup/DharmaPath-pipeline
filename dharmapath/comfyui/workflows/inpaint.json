@@ -20,7 +20,7 @@
     "class_type": "CheckpointLoaderSimple",
     "_meta": { "title": "Load Checkpoint" },
     "inputs": {
-      "ckpt_name": "animagineXLV31_v31.safetensors"
+      "ckpt_name": "illustrious_xl.safetensors"
     }
   },
   "6": {

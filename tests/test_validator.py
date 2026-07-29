@@ -423,7 +423,10 @@ class TestW01ThoughtBubbleMinimum:
 
 class TestW02ConsecutiveHalfPanels:
     def test_no_warning_with_four_consecutive(self, validator, valid_screenplay):
-        # panels 1-4 are already half — 4 consecutive, no warning
+        # Set all panels to full first to avoid half-panel runs elsewhere
+        for panel in valid_screenplay.panels:
+            panel.size = Size.full
+        # Now set exactly 4 to half
         for i in range(1, 5):
             valid_screenplay.panels[i].size = Size.half
         result = validator.validate(valid_screenplay)
@@ -506,6 +509,8 @@ class TestW06ConditionWithoutFollowThrough:
             Dialogue(speaker="Shakuni", type=DialogueType.speech,
                      text="I have a condition before we begin.")
         ]
+        # Clear next panel's dialogue to prevent accidental elaboration keywords matching
+        valid_screenplay.panels[2].dialogue = []
         result = validator.validate(valid_screenplay)
         assert any(e.rule_name == "W06_CONDITION_WITHOUT_FOLLOW_THROUGH"
                    for e in result.errors)

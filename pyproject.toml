@@ -1,6 +1,7 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
+
 
 [project]
 name = "dharmapath-pipeline"
@@ -14,6 +15,10 @@ requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "Proprietary" }
 
+[project.scripts]
+dharmapath = "cli.main:app"
+
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["dharmapath*", "web*", "cli*", "config*"]
@@ -25,6 +30,9 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
+markers = [
+    "live: marks tests that require a real ComfyUI server with a GPU (skip with -m 'not live')",
+]
 
 [tool.mypy]
 python_version = "3.11"

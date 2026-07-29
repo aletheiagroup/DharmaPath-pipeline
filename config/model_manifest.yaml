@@ -1,0 +1,94 @@
+# =============================================================================
+# DharmaPath — Model Manifest
+#
+# Version-controlled model definitions for ComfyUI server setup.
+# Used by scripts/gcp_setup.sh to download models deterministically.
+#
+# Fields:
+#   name:         Human-readable model name
+#   filename:     Target filename on disk
+#   destination:  Subdirectory under models/ (checkpoints, loras, controlnet, etc.)
+#   url:          Download URL (HuggingFace, GitHub, etc.)
+#   sha256:       Expected SHA256 hash (null = skip integrity check)
+#   size_mb:      Approximate size in MB (for progress reporting)
+#   license:      License type (informational)
+#   source:       Source project/author
+#   required:     If true, setup fails if download fails
+#   dependencies: List of other model filenames this model depends on
+# =============================================================================
+
+version: "1.0"
+
+models:
+  # ── Base Checkpoint ──────────────────────────────────────────
+  - name: "Illustrious XL v0.1"
+    filename: "illustrious_xl.safetensors"
+    destination: "checkpoints"
+    url: "https://huggingface.co/OnomaAIResearch/Illustrious-xl-early-release-v0/resolve/main/Illustrious-XL-v0.1.safetensors"
+    sha256: null
+    size_mb: 6500
+    license: "Apache-2.0"
+    source: "OnomaAIResearch"
+    required: true
+    dependencies: []
+
+  # ── Upscaler ─────────────────────────────────────────────────
+  - name: "RealESRGAN x4plus"
+    filename: "RealESRGAN_x4plus.pth"
+    destination: "upscale_models"
+    url: "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth"
+    sha256: null
+    size_mb: 67
+    license: "BSD-3-Clause"
+    source: "xinntao"
+    required: true
+    dependencies: []
+
+  # ── ControlNet ───────────────────────────────────────────────
+  - name: "ControlNet OpenPose SDXL"
+    filename: "control-lora-openposeXL2-rank256.safetensors"
+    destination: "controlnet"
+    url: "https://huggingface.co/thibaud/controlnet-openpose-sdxl-1.0/resolve/main/control-lora-openposeXL2-rank256.safetensors"
+    sha256: null
+    size_mb: 1400
+    license: "Apache-2.0"
+    source: "thibaud"
+    required: false
+    dependencies: []
+
+  # ── IP-Adapter ───────────────────────────────────────────────
+  - name: "IP-Adapter SDXL"
+    filename: "ip-adapter_sdxl.safetensors"
+    destination: "ipadapter"
+    url: "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter_sdxl.safetensors"
+    sha256: null
+    size_mb: 700
+    license: "Apache-2.0"
+    source: "h94"
+    required: false
+    dependencies:
+      - "clip_vision_g.safetensors"
+
+  # ── CLIP Vision (required by IP-Adapter) ─────────────────────
+  - name: "CLIP Vision ViT-G"
+    filename: "clip_vision_g.safetensors"
+    destination: "clip_vision"
+    url: "https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors"
+    sha256: null
+    size_mb: 2500
+    license: "Apache-2.0"
+    source: "h94"
+    required: false
+    dependencies: []
+
+  # ── Style LoRA (placeholder — replace URL with your trained LoRA) ──
+  # - name: "Itihaasa Style v1"
+  #   filename: "itihaasa_style_v1.safetensors"
+  #   destination: "loras"
+  #   url: "YOUR_LORA_URL_HERE"
+  #   sha256: null
+  #   size_mb: 150
+  #   license: "Custom"
+  #   source: "DharmaPath"
+  #   required: true
+  #   dependencies: []

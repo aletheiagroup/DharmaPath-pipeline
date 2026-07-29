@@ -1,7 +1,7 @@
 {
   "itihaasa": {
     "description": "Mahabharata arc — classical Indian manhwa style",
-    "lora_model": "itihaasa_style_v1.safetensors",
+    "lora_model": "",
     "lora_weight": 0.85,
     "style_tags": [
       "manhwa style",
@@ -33,7 +33,7 @@
   },
   "leela": {
     "description": "Krishna Leela arc — vibrant, playful style (coming soon)",
-    "lora_model": "leela_style_v1.safetensors",
+    "lora_model": "",
     "lora_weight": 0.80,
     "style_tags": [
       "manhwa style",
@@ -61,7 +61,7 @@
   },
   "cosmological": {
     "description": "Creation and cosmic scale — epic, abstract style (coming soon)",
-    "lora_model": "cosmological_style_v1.safetensors",
+    "lora_model": "",
     "lora_weight": 0.90,
     "style_tags": [
       "manhwa style",

@@ -1,0 +1,49 @@
+# =============================================================================
+# docker-compose.gpu.yml
+#
+# DharmaPath — ComfyUI Docker Compose for GCE GPU instances.
+# This file is also written to /opt/comfyui/ by gcp_setup.sh,
+# but kept here in the repo for version control.
+#
+# Usage:
+#   docker compose -f docker-compose.gpu.yml up -d
+#
+# Prerequisites:
+#   - Docker with NVIDIA Container Toolkit installed
+#   - NVIDIA GPU drivers installed (pre-installed on GCE g2 instances)
+#   - Model files in ./comfyui-data/models/
+# =============================================================================
+
+services:
+  comfyui:
+    image: ghcr.io/ai-dock/comfyui:latest-cuda
+    container_name: dharmapath-comfyui
+    ports:
+      - "8188:8188"
+    volumes:
+      # Persistent model storage — survives container rebuilds
+      - ./comfyui-data/models:/workspace/ComfyUI/models
+      - ./comfyui-data/output:/workspace/ComfyUI/output
+      - ./comfyui-data/custom_nodes:/workspace/ComfyUI/custom_nodes
+      - ./comfyui-data/input:/workspace/ComfyUI/input
+    environment:
+      - COMFYUI_ARGS=--listen 0.0.0.0 --port 8188
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8188/system_stats"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
