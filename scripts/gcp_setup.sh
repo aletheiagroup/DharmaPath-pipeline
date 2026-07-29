@@ -62,13 +62,12 @@ apt-get install -y -qq \
     curl \
     gnupg \
     lsb-release \
-    software-properties-common \
     python3-yaml
 
 # Docker official GPG key + repo
 if ! command -v docker &> /dev/null; then
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian bookworm stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
     apt-get update -qq
     apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin
     log "Docker installed."
